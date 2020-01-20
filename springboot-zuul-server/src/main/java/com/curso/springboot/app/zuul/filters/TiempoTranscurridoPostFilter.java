@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.stereotype.Component;
 
 import com.netflix.zuul.ZuulFilter;
@@ -38,7 +39,7 @@ public class TiempoTranscurridoPostFilter extends ZuulFilter {
 
 	@Override
 	public String filterType() {
-		return "post";
+		return FilterConstants.POST_TYPE;
 	}
 
 	@Override

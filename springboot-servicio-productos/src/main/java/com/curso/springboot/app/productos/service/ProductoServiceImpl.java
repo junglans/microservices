@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.curso.springboot.app.commons.model.entity.Producto;
 import com.curso.springboot.app.productos.dao.ProductoDao;
-import com.curso.springboot.app.productos.model.entity.Producto;
+
 
 @Service
 public class ProductoServiceImpl implements IProductoService {
@@ -25,6 +26,18 @@ public class ProductoServiceImpl implements IProductoService {
 	@Transactional(readOnly = true)
 	public Producto findById(Long id) {
 		return dao.findById(id).orElse(null);
+	}
+
+	@Override
+	@Transactional
+	public Producto save(Producto producto) {
+		 return dao.save(producto);
+	}
+
+	@Override
+	@Transactional
+	public void deleteById(Long id) {
+		dao.deleteById(id);
 	}
 
 }
