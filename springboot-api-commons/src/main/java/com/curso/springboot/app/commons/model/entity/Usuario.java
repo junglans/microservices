@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "USUARIOS")
@@ -34,7 +35,8 @@ public class Usuario implements Serializable {
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "usuario_rol", 
 				joinColumns = {@JoinColumn(name = "usuario_id")},
-				inverseJoinColumns = {@JoinColumn(name = "role_id")})
+				inverseJoinColumns = {@JoinColumn(name = "rol_id")},
+				uniqueConstraints = {@UniqueConstraint(columnNames = {"usuario_id", "rol_id"})})
 	private List<Rol> roles;
 	
 	public Long getId() {
