@@ -17,12 +17,12 @@ public class FabricanteController {
 	@Autowired
 	private FabricanteService service;
 	
-	@RequestMapping(method = RequestMethod.GET, value = "listar")
+	@RequestMapping(method = RequestMethod.GET, value = "/")
 	public @ResponseBody List<Fabricante> findAll() {
 		return service.findAll();
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "detalle/{id}")
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
 	public @ResponseBody Fabricante findByid(@PathVariable Long id) {
 		return service.findById(id);
 	}

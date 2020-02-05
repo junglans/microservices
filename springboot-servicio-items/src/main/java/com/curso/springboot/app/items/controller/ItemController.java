@@ -52,7 +52,7 @@ public class ItemController {
 	}
 
 	@HystrixCommand(fallbackMethod = "findByIdAndCantidadCB")
-	@RequestMapping(method = RequestMethod.GET, value = "detalle/{id}/cantidad/{cantidad}", produces = "application/json;charsert=utf8")
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}/cantidad/{cantidad}", produces = "application/json;charsert=utf8")
 	public ResponseEntity<Item> findByIdAndCantidad(@PathVariable Long id, @PathVariable Integer cantidad) {
 		return new ResponseEntity<Item>(service.findByIdAndCantidad(id, cantidad), HttpStatus.OK);
 	}

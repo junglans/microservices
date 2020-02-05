@@ -9,7 +9,9 @@ import com.curso.springboot.app.commons.model.entity.Usuario;
 
 @Configuration
 public class RepositoryConfig implements RepositoryRestConfigurer {
-
+/**
+ * Con esto conseguimos que los identificadores se envíen en la respuesta.
+ */
 	@Override
 	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
 		config.exposeIdsFor(Rol.class, Usuario.class);

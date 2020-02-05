@@ -8,7 +8,7 @@ import org.springframework.data.rest.core.annotation.RestResource;
 
 import com.curso.springboot.app.commons.model.entity.Usuario;
 
-@RepositoryRestResource(path = "usuario")
+@RepositoryRestResource(path = "gestion")
 public interface UsuarioDao extends JpaRepository<Usuario , Long> {
 
 	/**
@@ -16,10 +16,11 @@ public interface UsuarioDao extends JpaRepository<Usuario , Long> {
 	 * @param username
 	 * @return
 	 */
+	// http://localhost:8090/api/v1.0/usuarios/crud/search/byusername?name=mama
 	@RestResource(path = "byusername")
-	public Usuario findByUsername(@Param("name") String username);
+	public Usuario findByUsername(@Param("username") String username);
 	@RestResource(path = "getbyusername")
 	@Query("SELECT u FROM Usuario u WHERE u.username = ?1")
-	public Usuario getUserByUsername(@Param("name")  String username);
+	public Usuario getUserByUsername(@Param("username")  String username);
 	
 }

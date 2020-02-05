@@ -10,6 +10,6 @@ import com.curso.springboot.app.commons.model.entity.Usuario;
 @FeignClient(name = "servicio-usuarios")
 public interface UsuarioFeignClient {
 
-	@RequestMapping( method = RequestMethod.GET , value = "usuario/search/byusername")
+	@RequestMapping( method = RequestMethod.GET , value = "gestion/search/byusername")
 	public Usuario findByUsername( @RequestParam String username);
 }
