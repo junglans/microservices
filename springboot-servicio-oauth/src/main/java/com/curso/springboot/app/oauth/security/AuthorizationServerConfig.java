@@ -65,8 +65,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	 */
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		// Lo hacemos en memoria pero podria ser también jdbc u otro tipo de almacenamiento.
-		clients.inMemory().withClient(env.getProperty("config.security.oauth.client.id")) // client-id
-						  .secret(passwordEncoder.encode(env.getProperty("config.security.oauth.client.secret"))) // client-secret
+		clients.inMemory().withClient(env.getProperty("config.security.oauth.client.registration.FrontEndApp1.client_id")) // client-id
+						  .secret(passwordEncoder.encode(env.getProperty("config.security.oauth.client.registration.FrontEndApp1.client_secret"))) // client-secret
 						  .scopes("read", "write")
 						  // el grant type se refiere a cómo vamos a obtener el token.
 						   // aquí con "password". 
@@ -78,8 +78,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 						  .accessTokenValiditySeconds(3600)
 						  .refreshTokenValiditySeconds(3600)
 						  .and()
-						  .withClient("FrontEndApp2")
-						  .secret(passwordEncoder.encode("12345"))
+						  .withClient(env.getProperty("config.security.oauth.client.registration.FrontEndApp2.client_id"))
+						  .secret(passwordEncoder.encode(env.getProperty("config.security.oauth.client.registration.FrontEndApp2.client_secret")))
 						  .scopes("read", "write")
 						  .authorizedGrantTypes("password", "refresh_token")
 						  .accessTokenValiditySeconds(3600)
