@@ -6,4 +6,5 @@ import com.curso.springboot.app.commons.model.entity.Usuario;
 
 public interface IUsuarioService {
 	Usuario getUserByUsername(String username) throws UsernameNotFoundException;
+	Usuario update(Usuario usuario, Long id);
 }

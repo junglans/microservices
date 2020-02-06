@@ -18,6 +18,8 @@ import com.curso.springboot.app.commons.model.entity.Rol;
 import com.curso.springboot.app.commons.model.entity.Usuario;
 import com.curso.springboot.app.oauth.clients.UsuarioFeignClient;
 
+import feign.FeignException;
+
 @Service
 public class UsuarioService implements IUsuarioService, UserDetailsService {
 
@@ -40,16 +42,23 @@ public class UsuarioService implements IUsuarioService, UserDetailsService {
 				.peek(authority -> LOGGER.info("Rol: " + authority.getAuthority()))
 				.collect(Collectors.toList());
 		
-		return new User(usuario.getUsername(), usuario.getPassword(), usuario.getEnabled(), true, true , true, authorities);
+		return new User(usuario.getUsername(), usuario.getPassword(), usuario.isEnabled(), true, true , true, authorities);
 	}
 	@Override
 	public Usuario getUserByUsername(String username) throws UsernameNotFoundException {
-		Usuario usuario = client.findByUsername(username);
-		if (usuario == null) {
+		Usuario usuario = null;
+		try {
+			usuario = client.findByUsername(username);
+		} catch (FeignException e) {
 			LOGGER.error("Error en la autenticación. No existe el usuario " + username + " en el sistema");
 			throw new UsernameNotFoundException("Error en la autenticación. No existe el usuario " + username + " en el sistema");
-		} 
+		}
+
 		return usuario;
+	}
+	@Override
+	public Usuario update(Usuario usuario, Long id) {
+		return client.update(usuario, id);
 	}
 
 }

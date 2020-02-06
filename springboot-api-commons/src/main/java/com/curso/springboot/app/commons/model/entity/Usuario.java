@@ -39,6 +39,8 @@ public class Usuario implements Serializable {
 				uniqueConstraints = {@UniqueConstraint(columnNames = {"usuario_id", "rol_id"})})
 	private List<Rol> roles;
 	
+	private Integer intentos; 
+
 	public Long getId() {
 		return id;
 	}
@@ -62,8 +64,11 @@ public class Usuario implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public Boolean getEnabled() {
+/**
+ * Implemetando este método Spring Security detecta que el usuario está deshabilitado.
+ * @return
+ */
+	public Boolean isEnabled() {
 		return enabled;
 	}
 
@@ -101,6 +106,14 @@ public class Usuario implements Serializable {
 
 	public void setRoles(List<Rol> roles) {
 		this.roles = roles;
+	}
+
+	public Integer getIntentos() {
+		return intentos;
+	}
+
+	public void setIntentos(Integer intentos) {
+		this.intentos = intentos;
 	}
 
 	/**
