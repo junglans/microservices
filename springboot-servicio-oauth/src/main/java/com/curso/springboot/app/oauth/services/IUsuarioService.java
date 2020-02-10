@@ -5,6 +5,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.curso.springboot.app.commons.model.entity.Usuario;
 
 public interface IUsuarioService {
-	Usuario getUserByUsername(String username) throws UsernameNotFoundException;
+	Usuario findUserByUsername(String username) throws UsernameNotFoundException;
 	Usuario update(Usuario usuario, Long id);
 }

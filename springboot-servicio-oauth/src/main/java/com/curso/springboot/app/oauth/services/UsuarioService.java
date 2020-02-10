@@ -26,36 +26,40 @@ public class UsuarioService implements IUsuarioService, UserDetailsService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(UsuarioService.class);
 	@Autowired
 	private UsuarioFeignClient client;
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Usuario usuario = client.findByUsername(username);
-		if (usuario == null) {
-			LOGGER.error("Error en la autenticación. No existe el usuario " + username + " en el sistema");
-			throw new UsernameNotFoundException("Error en la autenticación. No existe el usuario " + username + " en el sistema");
+		try {
+			Usuario usuario = client.findByUsername(username);
+
+			List<GrantedAuthority> authorities = usuario.getRoles().stream().map((Rol rol) -> {
+				return new SimpleGrantedAuthority(rol.getNombre());
+			}).peek(authority -> LOGGER.info("Rol: " + authority.getAuthority())).collect(Collectors.toList());
+			
+			LOGGER.info("Usuario autenticado: " + username);
+			return new User(usuario.getUsername(), usuario.getPassword(), usuario.isEnabled(), true, true, true,
+					authorities);
+			
+		} catch (FeignException e) {
+			String error = "Error en la autenticación. No existe el usuario " + username + " en el sistema";
+			LOGGER.error(error);
+			throw new UsernameNotFoundException(error);
 		}
-		List<GrantedAuthority> authorities = usuario.getRoles()
-				.stream()
-				.map( (Rol rol) -> {
-						return new SimpleGrantedAuthority(rol.getNombre()); 
-					  }
-				)
-				.peek(authority -> LOGGER.info("Rol: " + authority.getAuthority()))
-				.collect(Collectors.toList());
-		
-		return new User(usuario.getUsername(), usuario.getPassword(), usuario.isEnabled(), true, true , true, authorities);
 	}
+
 	@Override
-	public Usuario getUserByUsername(String username) throws UsernameNotFoundException {
+	public Usuario findUserByUsername(String username) {
 		Usuario usuario = null;
 		try {
-			usuario = client.findByUsername(username);
+			 usuario = client.findByUsername(username);
+			
 		} catch (FeignException e) {
 			LOGGER.error("Error en la autenticación. No existe el usuario " + username + " en el sistema");
-			throw new UsernameNotFoundException("Error en la autenticación. No existe el usuario " + username + " en el sistema");
+			
 		}
-
 		return usuario;
 	}
+
 	@Override
 	public Usuario update(Usuario usuario, Long id) {
 		return client.update(usuario, id);
