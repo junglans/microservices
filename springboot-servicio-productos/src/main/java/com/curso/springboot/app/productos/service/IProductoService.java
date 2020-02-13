@@ -2,7 +2,7 @@ package com.curso.springboot.app.productos.service;
 
 import java.util.List;
 
-import com.curso.springboot.app.commons.model.entity.Producto;
+import com.curso.springboot.app.commons.model.entity.productos.Producto;
 
 
 /**

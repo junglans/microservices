@@ -1,4 +1,4 @@
-package com.curso.springboot.app.commons.model.entity;
+package com.curso.springboot.app.commons.model.entity.usuarios;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,7 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ROLES")
+@Table(name = "roles")
 public class Rol implements Serializable {
 
 	@Id

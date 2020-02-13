@@ -9,8 +9,8 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.curso.springboot.app.commons.model.entity.SesionLogin;
-import com.curso.springboot.app.commons.model.entity.Usuario;
+import com.curso.springboot.app.commons.model.entity.usuarios.SesionLogin;
+import com.curso.springboot.app.commons.model.entity.usuarios.Usuario;
 
 
 @RepositoryRestResource(path = "sesion")

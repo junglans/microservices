@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.curso.springboot.app.commons.model.entity.Producto;
+import com.curso.springboot.app.commons.model.entity.productos.Producto;
 import com.curso.springboot.app.items.clients.IProductoClienteRest;
 import com.curso.springboot.app.items.model.Item;
  

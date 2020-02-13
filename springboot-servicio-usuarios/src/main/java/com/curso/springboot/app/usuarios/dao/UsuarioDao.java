@@ -6,7 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 
-import com.curso.springboot.app.commons.model.entity.Usuario;
+import com.curso.springboot.app.commons.model.entity.usuarios.Usuario;
 
 @RepositoryRestResource(path = "gestion")
 public interface UsuarioDao extends JpaRepository<Usuario , Long> {

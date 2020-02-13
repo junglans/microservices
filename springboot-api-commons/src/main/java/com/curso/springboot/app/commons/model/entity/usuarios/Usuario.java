@@ -1,4 +1,4 @@
-package com.curso.springboot.app.commons.model.entity;
+package com.curso.springboot.app.commons.model.entity.usuarios;
 
 import java.io.Serializable;
 import java.util.List;
@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "USUARIOS")
+@Table(name = "usuarios")
 public class Usuario implements Serializable {
 
 	@Id

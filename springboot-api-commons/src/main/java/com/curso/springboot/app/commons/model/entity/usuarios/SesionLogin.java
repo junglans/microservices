@@ -1,4 +1,4 @@
-package com.curso.springboot.app.commons.model.entity;
+package com.curso.springboot.app.commons.model.entity.usuarios;
 
 import java.io.Serializable;
 import java.util.Date;

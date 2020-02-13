@@ -9,7 +9,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import com.curso.springboot.app.commons.model.entity.Usuario;
+import com.curso.springboot.app.commons.model.entity.usuarios.Usuario;
 import com.curso.springboot.app.oauth.services.IUsuarioService;
 
 import feign.FeignException;

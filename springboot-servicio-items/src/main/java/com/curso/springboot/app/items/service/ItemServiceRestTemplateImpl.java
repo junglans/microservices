@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.curso.springboot.app.commons.model.entity.Producto;
+import com.curso.springboot.app.commons.model.entity.productos.Producto;
 import com.curso.springboot.app.items.model.Item;
 
 

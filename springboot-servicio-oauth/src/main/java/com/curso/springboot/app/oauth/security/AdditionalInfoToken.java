@@ -10,7 +10,7 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.stereotype.Component;
 
-import com.curso.springboot.app.commons.model.entity.Usuario;
+import com.curso.springboot.app.commons.model.entity.usuarios.Usuario;
 import com.curso.springboot.app.oauth.services.IUsuarioService;
 
 @Component

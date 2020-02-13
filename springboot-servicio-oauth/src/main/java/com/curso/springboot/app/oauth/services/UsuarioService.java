@@ -14,8 +14,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.curso.springboot.app.commons.model.entity.Rol;
-import com.curso.springboot.app.commons.model.entity.Usuario;
+import com.curso.springboot.app.commons.model.entity.usuarios.Rol;
+import com.curso.springboot.app.commons.model.entity.usuarios.Usuario;
 import com.curso.springboot.app.oauth.clients.UsuarioFeignClient;
 
 import feign.FeignException;

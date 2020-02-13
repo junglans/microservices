@@ -1,6 +1,6 @@
-INSERT INTO USUARIOS ( USERNAME, PASSWORD, ENABLED, NOMBRE, APELLIDOS, EMAIL) VALUES( 'juan', '$2a$10$vHduItvb.QT8seuS.l2eoertrwQXOXiRoURZkr9CCPz2dstWSYAwW', 1, 'Juan Francisco', 'Jiménez Pérez', 'jfjimenezp@gmail.com');
-INSERT INTO USUARIOS ( USERNAME, PASSWORD, ENABLED, NOMBRE, APELLIDOS, EMAIL) VALUES( 'admin', '$2a$10$KPU9tUDFmDL9trd2w3xHLe7sqMv1O4aVchgSpcc5NUAQPYSDm.Z.6', 1, 'Pedro', 'Duque', 'pduque@gmail.com');
-INSERT INTO USUARIOS ( USERNAME, PASSWORD, ENABLED, NOMBRE, APELLIDOS, EMAIL) VALUES( 'mama', '$2a$10$K8fq4l1US.OQRQOyPfx02.K.qtUf1bQhz.mv26KhEFiaY8YH5rUtq', 1, 'Mama', 'Diedhou', 'diedhou@gmail.com');
+INSERT INTO USUARIOS ( USERNAME, PASSWORD, ENABLED, NOMBRE, APELLIDOS, EMAIL) VALUES( 'juan', '$2a$10$vHduItvb.QT8seuS.l2eoertrwQXOXiRoURZkr9CCPz2dstWSYAwW', true, 'Juan Francisco', 'Jiménez Pérez', 'jfjimenezp@gmail.com');
+INSERT INTO USUARIOS ( USERNAME, PASSWORD, ENABLED, NOMBRE, APELLIDOS, EMAIL) VALUES( 'admin', '$2a$10$KPU9tUDFmDL9trd2w3xHLe7sqMv1O4aVchgSpcc5NUAQPYSDm.Z.6', true, 'Pedro', 'Duque', 'pduque@gmail.com');
+INSERT INTO USUARIOS ( USERNAME, PASSWORD, ENABLED, NOMBRE, APELLIDOS, EMAIL) VALUES( 'mama', '$2a$10$K8fq4l1US.OQRQOyPfx02.K.qtUf1bQhz.mv26KhEFiaY8YH5rUtq', true, 'Mama', 'Diedhou', 'diedhou@gmail.com');
 
 INSERT INTO ROLES (NOMBRE) VALUES ('ROLE_ADMIN');
 INSERT INTO ROLES (NOMBRE) VALUES ('ROLE_USER');
