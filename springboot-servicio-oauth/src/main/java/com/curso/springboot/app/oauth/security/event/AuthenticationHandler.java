@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import com.curso.springboot.app.commons.model.entity.usuarios.Usuario;
 import com.curso.springboot.app.oauth.services.IUsuarioService;
 
+import brave.Tracer;
 import feign.FeignException;
 
 @Component
@@ -22,6 +23,9 @@ public class AuthenticationHandler implements AuthenticationEventPublisher {
 	@Autowired
 	private IUsuarioService service;
 
+	@Autowired
+	private Tracer tracer;
+	
 	@Override
 	public void publishAuthenticationSuccess(Authentication authentication) {
 		UserDetails user = (UserDetails) authentication.getPrincipal();
@@ -30,22 +34,29 @@ public class AuthenticationHandler implements AuthenticationEventPublisher {
 		Usuario usuario = service.findUserByUsername(user.getUsername());
 		usuario.setIntentos(0);
 		service.update(usuario, usuario.getId());
+		tracer.currentSpan().tag("login.successfull.mensaje", "OK");
 
 	}
 
 	@Override
 	public void publishAuthenticationFailure(AuthenticationException exception, Authentication authentication) {
 		String username = (String) authentication.getPrincipal();
+		StringBuilder errors = new StringBuilder();
+		errors.append(exception.getMessage() + "\n");
 		try {
+			
 			Usuario usuario = service.findUserByUsername(username);
 			if ( usuario != null ) {
 				if (usuario.getIntentos() == null) {
 					usuario.setIntentos(0);
 				}
-	
+				
 				usuario.setIntentos(usuario.getIntentos() + 1);
+				errors.append("Número de intentos de login: " + usuario.getIntentos());
 				if (usuario.getIntentos() == 3) {
-					LOGGER.warn(String.format("El usuario %s ha sido deshabilitado por exceso de intentos.", username));
+					String err = String.format("El usuario %s ha sido deshabilitado por exceso de intentos.", username);
+					errors.append(err);
+					LOGGER.warn(err);
 					usuario.setEnabled(Boolean.FALSE);
 				}
 
@@ -54,13 +65,15 @@ public class AuthenticationHandler implements AuthenticationEventPublisher {
 
 		} catch (FeignException e) {
 			e.printStackTrace();
-			LOGGER.error(String.format("El usuario % no existe en el sistema.", username));
+			String err = String.format("El usuario % no existe en el sistema.", username);
+			errors.append(err);
+			LOGGER.error(err);
 
 		}
 
 		LOGGER.error("Error Authentication for user :" + username);
 		LOGGER.error("Error: " + exception.getLocalizedMessage());
-
+		tracer.currentSpan().tag("error.mensaje", errors.toString());
 	}
 
 }
